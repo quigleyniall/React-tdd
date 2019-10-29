@@ -31857,7 +31857,7 @@ function (_React$Component) {
       }), _react.default.createElement("button", {
         "data-test": "saveNewRestaurantButton",
         onClick: this.handleSave
-      }, "Add"));
+      }, "Save"));
     }
   }]);
 
