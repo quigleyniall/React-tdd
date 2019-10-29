@@ -5,6 +5,7 @@ import RestaurantList from './RestaurantList';
 class RestaurantListPage extends React.Component {
   state = {
     restaurantNames: [],
+    showNewRestaurantForm: false,
   }
 
   handleSaveRestaurant = (newRestaurant) => {
@@ -13,16 +14,22 @@ class RestaurantListPage extends React.Component {
         ...state.restaurantNames,
         newRestaurant,
       ],
+      showNewRestaurantForm: false,
     }));
   }
 
+  handleShowNewResturantForm = () => {
+    this.setState({ showNewRestaurantForm: true });
+  }
+
   render() {
-    const { restaurantNames } = this.state;
+    const { restaurantNames, showNewRestaurantForm } = this.state;
     return (
       <div>
         <button
-          data-test="addRestaurantButton">Add Restaurant</button>
-        <NewRestaurantForm onSave={this.handleSaveRestaurant} />
+          data-test="addRestaurantButton"
+          onClick={this.handleShowNewResturantForm}>Add Restaurant</button>
+        { showNewRestaurantForm && <NewRestaurantForm onSave={this.handleSaveRestaurant} /> }
         <RestaurantList restaurantNames={restaurantNames} />
       </div>
     );
