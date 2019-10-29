@@ -25,7 +25,7 @@ class NewRestaurantForm extends React.Component {
           data-test="newRestaurantName" />
         <button
           data-test="saveNewRestaurantButton"
-          onClick={this.handleSave}>Add</button>
+          onClick={this.handleSave}>Save</button>
       </div>
     );
   }
