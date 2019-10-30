@@ -17,6 +17,7 @@ class RestaurantListPage extends React.Component {
       ],
       showNewRestaurantForm: false,
     }));
+    $('#addRestaurantModal').modal('close');
   }
 
   handleShowNewResturantForm = () => {
@@ -29,6 +30,7 @@ class RestaurantListPage extends React.Component {
       <div>
         <Modal
           header="New Restaurant"
+          id="addRestaurantModal"
           trigger={
             <Button
               data-test="addRestaurantButton">
