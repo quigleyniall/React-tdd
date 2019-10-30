@@ -17,6 +17,7 @@ class RestaurantListPage extends React.Component {
       ],
       showNewRestaurantForm: false,
     }));
+    // eslint-disable-next-line no-undef
     $('#addRestaurantModal').modal('close');
   }
 
