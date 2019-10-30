@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Row, Col } from 'react-materialize';
+import { Button, Row, Col, Modal } from 'react-materialize';
 import NewRestaurantForm from './NewRestaurantForm';
 import RestaurantList from './RestaurantList';
 
@@ -27,12 +27,17 @@ class RestaurantListPage extends React.Component {
     const { restaurantNames, showNewRestaurantForm } = this.state;
     return (
       <div>
-        <Row>
-          <Button
-            data-test="addRestaurantButton"
-            onClick={this.handleShowNewResturantForm}>Add Restaurant</Button>
-          { showNewRestaurantForm && <NewRestaurantForm onSave={this.handleSaveRestaurant} /> }
-        </Row>
+        <Modal
+          header="New Restaurant"
+          trigger={
+            <Button
+              data-test="addRestaurantButton">
+                Add Restaurant
+            </Button>}>
+          <NewRestaurantForm
+            onSave={this.handleSaveRestaurant}
+          />
+        </Modal>
         <Row>
           <RestaurantList restaurantNames={restaurantNames} />
         </Row>

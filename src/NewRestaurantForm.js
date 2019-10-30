@@ -32,6 +32,7 @@ class NewRestaurantForm extends React.Component {
           m={4}
           l={82}
           data-test="saveNewRestaurantButton"
+          modal="close"
           onClick={this.handleSave}>Save</Button>
       </Row>
     );
