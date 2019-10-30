@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-materialize';
 import NewRestaurantForm from './NewRestaurantForm';
 import RestaurantList from './RestaurantList';
 
@@ -26,9 +27,9 @@ class RestaurantListPage extends React.Component {
     const { restaurantNames, showNewRestaurantForm } = this.state;
     return (
       <div>
-        <button
+        <Button
           data-test="addRestaurantButton"
-          onClick={this.handleShowNewResturantForm}>Add Restaurant</button>
+          onClick={this.handleShowNewResturantForm}>Add Restaurant</Button>
         { showNewRestaurantForm && <NewRestaurantForm onSave={this.handleSaveRestaurant} /> }
         <RestaurantList restaurantNames={restaurantNames} />
       </div>

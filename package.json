@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "react-materialize": "^2.4.7"
   },
   "jest": {
     "setupFilesAfterEnv": [
