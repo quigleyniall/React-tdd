@@ -11,19 +11,30 @@ class NewRestaurantForm extends React.Component {
     resetForm();
   }
 
+  validate = (values) => {
+    let errors = {};
+    if (values.restaurantName === '') {
+      errors.restaurantName = 'Cannot be blank';
+    }
+    return errors;
+  }
+
   render() {
     return (
       <Row>
         <Formik
           initialValues={{ restaurantName: '' }}
-          onSubmit={this.handleSave}>
-          {({ values, handleChange, handleSubmit }) => (
+          onSubmit={this.handleSave}
+          validate={this.validate}>
+          {({ values, handleChange, handleSubmit, touched, errors }) => (
             <form onSubmit={handleSubmit}>
               <Input
                 s={12} m={8} l={8}
                 label="Restaurant Name"
                 name="restaurantName"
+                id="restaurantName"
                 value={values.restaurantName}
+                error={errors.restaurantName}
                 onChange={handleChange}
                 data-test="newRestaurantName" />
               <Button
