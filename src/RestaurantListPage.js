@@ -36,12 +36,12 @@ class RestaurantListPage extends React.Component {
       <div>
         <Modal
           header="New Restaurant"
-          data-test="addRestaurantModal"
+          data-testid="addRestaurantModal"
           id="addRestaurantModal"
           actions={[]}
           trigger={
             <Button
-              data-test="addRestaurantButton">
+              data-testid="addRestaurantButton">
                 Add Restaurant
             </Button>}>
           <NewRestaurantForm

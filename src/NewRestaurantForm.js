@@ -34,17 +34,17 @@ class NewRestaurantForm extends React.Component {
         value={values.restaurantName}
         error={errors.restaurantName}
         onChange={handleChange}
-        data-test="newRestaurantName" />
+        data-testid="newRestaurantName" />
       <Button
         s={12} m={4} l={82}
-        data-test="saveNewRestaurantButton"
+        data-testid="saveNewRestaurantButton"
         type="submit"
       >Save</Button>
       <Button
         waves="green"
         type="button"
         onClick={this.handleCancel({ resetForm })}
-        data-test="cancelModalButton"
+        data-testid="cancelModalButton"
         flat>
           Close
       </Button>
