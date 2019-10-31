@@ -40,6 +40,7 @@ class NewRestaurantForm extends React.Component {
               <Button
                 s={12} m={4} l={82}
                 data-test="saveNewRestaurantButton"
+                type="submit"
               >Save</Button>
             </form>
           )}
