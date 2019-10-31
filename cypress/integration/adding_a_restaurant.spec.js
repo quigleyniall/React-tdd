@@ -1,7 +1,7 @@
 describe('adding a restaurant', () => {
   it('display the restaurant in the list', () => {
     const restaurantName = "Sushi Place";
-    cy.visit('http://localhost:1234');    
+    cy.visit('http://localhost:1234');
 
     // modal not shown at start
     cy.get('[data-test="newRestaurantName"]')
@@ -20,6 +20,8 @@ describe('adding a restaurant', () => {
     // type restaurant name in modal
     cy.get('[data-test="addRestaurantButton"]')
       .click();
+
+    // cy.focused().should('have.attr', 'data-test', 'newRestaurantName');
 
     cy.get('[data-test="newRestaurantName"]')
       .type(restaurantName);
