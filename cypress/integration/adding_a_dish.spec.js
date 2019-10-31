@@ -1,4 +1,4 @@
-describe.skip('adding a dish', () => {
+describe('adding a dish', () => {
   it('displays a dish in the list', () => {
     const restaurantName="Sushi Place";
     const dishName = "Volcano Roll";
@@ -22,7 +22,7 @@ describe.skip('adding a dish', () => {
   }
 
   function modalNotShownAtTheStart() {
-    cy.get('[data-testid="newDishName"]').should('not.be.visible');
+    cy.get('[data-testid="newDishModal"]').should('not.be.visible');
   }
 
   function modalAllowsPassingDish(dishName) {
