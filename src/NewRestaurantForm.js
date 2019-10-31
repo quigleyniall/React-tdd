@@ -19,6 +19,25 @@ class NewRestaurantForm extends React.Component {
     return errors;
   }
 
+  renderForm = ({ values, handleChange, handleSubmit, errors }) => (
+    <form onSubmit={handleSubmit}>
+      <Input
+        s={12} m={8} l={8}
+        label="Restaurant Name"
+        name="restaurantName"
+        id="restaurantName"
+        value={values.restaurantName}
+        error={errors.restaurantName}
+        onChange={handleChange}
+        data-test="newRestaurantName" />
+      <Button
+        s={12} m={4} l={82}
+        data-test="saveNewRestaurantButton"
+        type="submit"
+      >Save</Button>
+    </form>
+  )
+
   render() {
     return (
       <Row>
@@ -26,24 +45,7 @@ class NewRestaurantForm extends React.Component {
           initialValues={{ restaurantName: '' }}
           onSubmit={this.handleSave}
           validate={this.validate}>
-          {({ values, handleChange, handleSubmit, touched, errors }) => (
-            <form onSubmit={handleSubmit}>
-              <Input
-                s={12} m={8} l={8}
-                label="Restaurant Name"
-                name="restaurantName"
-                id="restaurantName"
-                value={values.restaurantName}
-                error={errors.restaurantName}
-                onChange={handleChange}
-                data-test="newRestaurantName" />
-              <Button
-                s={12} m={4} l={82}
-                data-test="saveNewRestaurantButton"
-                type="submit"
-              >Save</Button>
-            </form>
-          )}
+          {this.renderForm}
         </Formik>
       </Row>
     );
