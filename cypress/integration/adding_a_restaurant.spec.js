@@ -6,6 +6,7 @@ describe('adding a restaurant', () => {
     modalNotShownAtTheStart();
     modalCanBeCanceled();
     modalDisplaysValidationErrors();
+    modalClearsOutValidationErrorWhenClosed();
     modalAllowsTypingRestaurant(restaurantName);
   });
 
@@ -18,7 +19,7 @@ describe('adding a restaurant', () => {
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
-    cy.get('[data-test="addRestaurantModal"] button.modal-close')
+    cy.get('[data-test="cancelModalButton"]')
       .click();
 
     cy.get('[data-test="newRestaurantName"]')
@@ -35,7 +36,30 @@ describe('adding a restaurant', () => {
     cy.get('label[for="restaurantName"][data-error="Cannot be blank"]')
       .should('be.visible');
 
-    cy.get('[data-test="addRestaurantModal"] button.modal-close')
+    cy.get('[data-test="cancelModalButton"]')
+      .click();
+  }
+
+  function modalClearsOutValidationErrorWhenClosed() {
+    cy.get('[data-test="addRestaurantButton"]')
+      .click();
+
+    cy.get('[data-test="saveNewRestaurantButton"]')
+      .click();
+
+    cy.get('label[for="restaurantName"][data-error="Cannot be blank"]')
+      .should('be.visible');
+
+    cy.get('[data-test="cancelModalButton"]')
+      .click();
+
+    cy.get('[data-test="addRestaurantButton"]')
+      .click();
+
+    cy.get('label[for="restaurantName"][data-error="Cannot be blank"]')
+      .should('not.be.visible');
+
+    cy.get('[data-test="cancelModalButton"]')
       .click();
   }
 

@@ -19,7 +19,12 @@ class NewRestaurantForm extends React.Component {
     return errors;
   }
 
-  renderForm = ({ values, handleChange, handleSubmit, errors }) => (
+  handleCancel = ({ resetForm }) => () => {
+    resetForm();
+    this.props.onCancel();
+  }
+
+  renderForm = ({ values, handleChange, handleSubmit, errors, resetForm }) => (
     <form onSubmit={handleSubmit}>
       <Input
         s={12} m={8} l={8}
@@ -35,6 +40,14 @@ class NewRestaurantForm extends React.Component {
         data-test="saveNewRestaurantButton"
         type="submit"
       >Save</Button>
+      <Button
+        waves="green"
+        type="button"
+        onClick={this.handleCancel({ resetForm })}
+        data-test="cancelModalButton"
+        flat>
+          Close
+      </Button>
     </form>
   )
 

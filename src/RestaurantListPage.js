@@ -25,6 +25,11 @@ class RestaurantListPage extends React.Component {
     this.setState({ showNewRestaurantForm: true });
   }
 
+  onCancel = () => {
+    // eslint-disable-next-line no-undef
+    $('#addRestaurantModal').modal('close');
+  }
+
   render() {
     const { restaurantNames, showNewRestaurantForm } = this.state;
     return (
@@ -33,6 +38,7 @@ class RestaurantListPage extends React.Component {
           header="New Restaurant"
           data-test="addRestaurantModal"
           id="addRestaurantModal"
+          actions={[]}
           trigger={
             <Button
               data-test="addRestaurantButton">
@@ -40,6 +46,7 @@ class RestaurantListPage extends React.Component {
             </Button>}>
           <NewRestaurantForm
             onSave={this.handleSaveRestaurant}
+            onCancel={this.onCancel}
           />
         </Modal>
         <Row>
