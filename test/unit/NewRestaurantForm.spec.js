@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import NewRestaurantForm from '../../src/NewRestaurantForm';
 
 describe('NewRestaurantForm', () => {
@@ -14,7 +15,12 @@ describe('NewRestaurantForm', () => {
 
       wrapper
         .find('input[data-test="newRestaurantName"]')
-        .simulate('change', { target: { value: 'Sushi Place' } });
+        .simulate('change', {
+          target: {
+            name: 'restaurantName',
+            value: 'Sushi Place',
+          },
+        });
 
       wrapper
         .find('button[data-test="saveNewRestaurantButton"]')
@@ -22,11 +28,15 @@ describe('NewRestaurantForm', () => {
     });
 
     it('calls the onSave handler', () => {
-      expect(saveHandler).toHaveBeenCalledWith('Sushi Place');
+      window.setTimeout(() => {
+        expect(saveHandler).toHaveBeenCalledWith('Sushi Place');
+      }, 0);
     });
 
     it('clears the text field', () => {
-      expect(wrapper.find('input[data-test="newRestaurantName"]').props().value).toEqual('');
+      window.setTimeout(() => {
+        expect(wrapper.find('input[data-test="newRestaurantName"]').props().value).toEqual('');
+      }, 0);
     });
   });
 });
