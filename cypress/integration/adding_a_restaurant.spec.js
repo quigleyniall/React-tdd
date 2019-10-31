@@ -3,11 +3,18 @@ describe('adding a restaurant', () => {
     const restaurantName = "Sushi Place";
     cy.visit('http://localhost:1234');
 
-    // modal not shown at start
+    modalNotShownAtTheStart();
+    modalCanBeCanceled();
+    modalDisplaysValidationErrors();
+    modalAllowsTypingRestaurant(restaurantName);
+  });
+
+  function modalNotShownAtTheStart() {
     cy.get('[data-test="newRestaurantName"]')
       .should('not.be.visible');
+  }
 
-    // modal can be canceled
+  function modalCanBeCanceled() {
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
@@ -16,8 +23,9 @@ describe('adding a restaurant', () => {
 
     cy.get('[data-test="newRestaurantName"]')
       .should('not.be.visible');
+  }
 
-    // modal dispays validation errors
+  function modalDisplaysValidationErrors() {
     cy.get('[data-test="addRestaurantButton"]')
       .click();
 
@@ -27,7 +35,14 @@ describe('adding a restaurant', () => {
     cy.get('label[for="restaurantName"][data-error="Cannot be blank"]')
       .should('be.visible');
 
-    // type restaurant name in modal
+    cy.get('[data-test="addRestaurantModal"] button.modal-close')
+      .click();
+  }
+
+  function modalAllowsTypingRestaurant(restaurantName) {
+    cy.get('[data-test="addRestaurantButton"]')
+      .click();
+
     cy.get('[data-test="newRestaurantName"]')
       .type(restaurantName);
 
@@ -38,5 +53,5 @@ describe('adding a restaurant', () => {
       .should('not.be.visible');
 
     cy.contains(restaurantName);
-  });
+  }
 });
