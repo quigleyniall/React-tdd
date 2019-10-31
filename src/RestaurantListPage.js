@@ -31,6 +31,7 @@ class RestaurantListPage extends React.Component {
       <div>
         <Modal
           header="New Restaurant"
+          data-test="addRestaurantModal"
           id="addRestaurantModal"
           trigger={
             <Button
