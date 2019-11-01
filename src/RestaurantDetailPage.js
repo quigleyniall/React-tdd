@@ -1,22 +1,15 @@
 import React from 'react';
 import { Button, Modal, Row } from 'react-materialize';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { addDishToStore } from './store/dishes/actions';
 import NewDishForm from './NewDishForm';
 import DishList from './DishList';
 
 class RestaurantDetailPage extends React.Component {
-  state = {
-    dishNames: [],
-  }
-
   handleSaveDish = (newDish) => {
-    this.setState(state => ({
-      dishNames: [
-        ...state.dishNames,
-        newDish,
-      ],
-      showNewRestaurantForm: false,
-    }));
+    const { addDishToStore } = this.props;
+    addDishToStore(newDish);
     // eslint-disable-next-line no-undef
     $('#addDishModal').modal('close');
   }
@@ -27,7 +20,7 @@ class RestaurantDetailPage extends React.Component {
   }
 
   render() {
-    const { dishNames } = this.state;
+    const { dishes } = this.props;
     return (
       <div>
         <Link
@@ -48,11 +41,13 @@ class RestaurantDetailPage extends React.Component {
             onSave={this.handleSaveDish} />
         </Modal>
         <Row>
-          <DishList dishNames={dishNames} />
+          <DishList dishNames={dishes} />
         </Row>
       </div>
     );
   }
 }
 
-export default RestaurantDetailPage;
+const mapStateToProps = ({ dishes }) => ({ dishes });
+
+export default connect(mapStateToProps, { addDishToStore })(RestaurantDetailPage);

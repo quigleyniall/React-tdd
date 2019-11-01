@@ -1,22 +1,14 @@
 import React from 'react';
 import { Button, Row, Col, Modal } from 'react-materialize';
+import { connect } from 'react-redux';
+import { addRestaurantToStore } from './store/restaurants/actions';
 import NewRestaurantForm from './NewRestaurantForm';
 import RestaurantList from './RestaurantList';
 
 class RestaurantListPage extends React.Component {
-  state = {
-    restaurantNames: [],
-    showNewRestaurantForm: false,
-  }
-
   handleSaveRestaurant = (newRestaurant) => {
-    this.setState(state => ({
-      restaurantNames: [
-        ...state.restaurantNames,
-        newRestaurant,
-      ],
-      showNewRestaurantForm: false,
-    }));
+    const { addRestaurantToStore } = this.props;
+    addRestaurantToStore(newRestaurant);
     // eslint-disable-next-line no-undef
     $('#addRestaurantModal').modal('close');
   }
@@ -31,7 +23,7 @@ class RestaurantListPage extends React.Component {
   }
 
   render() {
-    const { restaurantNames, showNewRestaurantForm } = this.state;
+    const { restaurants } = this.props;
     return (
       <div>
         <Modal
@@ -50,11 +42,13 @@ class RestaurantListPage extends React.Component {
           />
         </Modal>
         <Row>
-          <RestaurantList restaurantNames={restaurantNames} />
+          <RestaurantList restaurantNames={restaurants} />
         </Row>
       </div>
     );
   }
 }
 
-export default RestaurantListPage;
+const mapStateToProps = ({ restaurants }) => ({ restaurants });
+
+export default connect(mapStateToProps, { addRestaurantToStore })(RestaurantListPage);
