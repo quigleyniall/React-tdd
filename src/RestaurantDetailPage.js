@@ -7,9 +7,17 @@ import NewDishForm from './NewDishForm';
 import DishList from './DishList';
 
 class RestaurantDetailPage extends React.Component {
+  // componentDidMount() {
+  //   // const { navigation } = this.props;
+  //   console.log(this.props.match.params.name);
+  //   const { dishes } = this.props;
+  //   console.log(dishes)
+  // }
   handleSaveDish = (newDish) => {
     const { addDishToStore } = this.props;
-    addDishToStore(newDish);
+    const restaurantName = this.props.match.params.name;
+    // const restaurantName = navigation
+    addDishToStore(restaurantName, newDish);
     // eslint-disable-next-line no-undef
     $('#addDishModal').modal('close');
   }
@@ -21,6 +29,7 @@ class RestaurantDetailPage extends React.Component {
 
   render() {
     const { dishes } = this.props;
+    const restaurantName = this.props.match.params.name;
     return (
       <div>
         <Link
@@ -41,7 +50,7 @@ class RestaurantDetailPage extends React.Component {
             onSave={this.handleSaveDish} />
         </Modal>
         <Row>
-          <DishList dishNames={dishes} />
+          <DishList dishNames={dishes} restaurantName={restaurantName} />
         </Row>
       </div>
     );

@@ -1,8 +1,9 @@
 export const addDish = 'addDish';
 
-const addDishToStore = (payload) => ({
+const addDishToStore = (restaurantName, dishName) => ({
   type: addDish,
-  payload,
+  restaurantName,
+  dishName,
 });
 
 export { addDishToStore };

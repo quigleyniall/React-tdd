@@ -1,13 +1,16 @@
 import { addDish } from './actions';
 
-const initialState = [
-  'Whooper',
-];
-
-const dishes = (state = initialState, action) => {
+const dishes = (state = {}, action) => {
   switch (action.type) {
     case addDish:
-      return [...state, action.payload];
+      const { restaurantName, dishName } = action;
+      return {
+        ...state,
+        [restaurantName]: [
+          dishName,
+          ...(state[restaurantName] || []),
+        ],
+      };
     default:
       return state;
   }
