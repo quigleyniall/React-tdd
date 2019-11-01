@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Modal, Row } from 'react-materialize';
+import { Link } from 'react-router-dom';
 import NewDishForm from './NewDishForm';
 import DishList from './DishList';
 
@@ -29,6 +30,9 @@ class RestaurantDetailPage extends React.Component {
     const { dishNames } = this.state;
     return (
       <div>
+        <Link
+          to="/"
+          data-testid="backButton">Back</Link>
         <Modal
           header="New Dish"
           data-testid="addDishModal"
