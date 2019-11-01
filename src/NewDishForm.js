@@ -20,7 +20,7 @@ class NewDishForm extends React.Component {
     <form onSubmit={handleSubmit}>
       <Input
         s={12} m={8} l={8}
-        label="dish Name"
+        label="Dish Name"
         name="dishName"
         id="dishName"
         value={values.dishName}
